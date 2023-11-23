@@ -77,7 +77,7 @@ export default function Title() {
             <b>ХОЧУ УЧАВСТВОВАТЬ</b>
           </a>
           <a
-            href="https://google.com"
+            href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
             target="_blank"
             className="flex mt-[50px] mb-[50px]"
           >
@@ -94,7 +94,7 @@ export default function Title() {
           </a>
         </div>
       </div>
-      
+
     </section>
   );
 }
