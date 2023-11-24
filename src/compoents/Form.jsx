@@ -2,6 +2,18 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import TypingEffect from "../compoents/TypingEffect";
+
+const textsStep = [
+  "Да. Оно просто закрылось. Думаешь тут что-то появиться?",
+  "Спешу тебя огорчить, нооо... нет (",
+  "Можешь ждать тут хоть вечность",
+  "Но больше ничего не случится",
+  "Ты сам захотел закрыть это окно!",
+  "А что ты ожидал от кнопки «закрыть»?",
+  "Я даже не могу представить...",
+  "Ну ладно, ты слишком настойчив, нажми на текст который появится внизу",
+];
 
 export default function Title() {
   const [close, setClose] = useState(false);
@@ -11,22 +23,31 @@ export default function Title() {
     setClose(true);
 
     setInterval(() => {
-      setStepEnd(prev => prev + 1);
+      setStepEnd((prev) => prev + 1);
     }, 3000);
-  }; 
+  };
 
   if (close) {
     return (
-      <section className="mt-[70px] realtive z-30 bg-white">
+      <section className="mt-[70px] realtive z-30">
         <div>
           {stepEnd > 0 ? (
             <div className="text-center mt-10">
-              {stepEnd >= 1 && <p>Да. Оно просто закрылось. Думаешь тут что-то появиться?</p>}
-              {stepEnd >= 2 && <p>Спешу тебя огорчить, нооо... нет (</p>}
-              {stepEnd >= 3 && <p>Можешь ждать тут хоть вечность</p>}
-              {stepEnd >= 4 && <p>Но больше ничего не случится</p>}
-              {stepEnd >= 5 && <p>Ты сам захотел закрыть это окно!</p>}
-              {stepEnd >= 6 && <p>А что ты ожидал от кнопки «закрыть»? Я даже не могу представить...</p>}
+              {textsStep.map((text, i) => {
+                if (stepEnd < i + 1) {
+                  return;
+                }
+
+                return <TypingEffect key={text} text={text} />;
+              })}
+              {stepEnd > 8 && (
+                <a
+                  href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                  target="_blank"
+                >
+                  Восстановить окно
+                </a>
+              )}
             </div>
           ) : (
             ""
@@ -36,9 +57,21 @@ export default function Title() {
     );
   }
 
+  const mainTexts = [
+    `СИЭУиП запускает соревнование в котором студентам предстоит решать
+    разные задачи путем создания новых идей и серьёзных проектов для
+    будущего стартапа - это и называется «ИДЕАТОН». Мы подготовили
+    номинации и призы, идеатон будет идти два дня с 13 по 14 декабря,
+    площадки будут оборудованы всем, что необходимо.`,
+    `Если вы студент и хотите поучавстовать тогда, соберите команду из 5
+    человек и придумайте название, а далее заполните форму, которая
+    будет ниже. Если у вас уже есть команда осталось только нажать на
+    кнопку внизу что бы заполнить форму...`,
+  ];
+
   return (
-    <section className="mt-[70px] realtive z-30 bg-white">
-      <div className="block flex flex-col max-w-[640px] w-[100%] border border-orange">
+    <section className="mt-[70px] w-full flex flex-col items-center realtive z-30 font-primary">
+      <div className="block flex flex-col max-w-[640px] w-[100%] mb-[160px] border border-orange bg-white">
         <div className="head h-[50px] flex items-center justify-between border-b border-orange pl-[20px]">
           <div className="name text-[20px] font-primary flex">welcome.exe</div>
           <div
@@ -48,27 +81,31 @@ export default function Title() {
             X
           </div>
         </div>
-        <div className="mx-auto max-w-[490px] flex flex-col items-center">
+        <div className="mx-auto max-w-[490px] flex flex-col items-center font-pr">
           <b className="text-center font-primary mt-[40px] max-w-[380px] mb-[40px]">
-            Второй городской идеатон SLM BRAIN HACK в Сургуте будет проходить
-            4,5 декабря в СИУэИП на Мелик-Карамова 18/1
+            Второй городской идеатон SLM BRAIN HACK в Сургуте будет проходить с
+            13 по 14 декабря в СИЭУиП на Мелик-Карамова 18/1.
+            <br />
+            <br />
+            Открытие идеатона будет 13 деакбря в <br /> Школе 21 на ул. Иосифа
+            Каролинского, 14/1, Сургут, за всеми анонсами следите в <br />
+            <a
+              className="underline decoration-1 text-orange"
+              target="_blank"
+              href="https://t.me/slm_brain_hack"
+            >
+              телеграм канале идеатона
+            </a>
             <br />
             <br />
             Создавайте команду и присоединяйтесь!
           </b>
-          <p className="mx-10 mb-10 font-primary">
-            СИЭУиП запускает соревнование в котором студентам предстоит решать
-            разные задачи путем создания новых идей и серьёзных проектов для
-            будущего стартапа - это и называется «ИДЕАТОН». Мы подготовили
-            номинации и призы, идеатон будет идти два дня с 4 по 5 декабря,
-            площадки будут оборудованы всем, что необходимо.
-          </p>
-          <p className="text mx-10 font-primary">
-            Если вы студент и хотите поучастовать тогда соберите команду из 5
-            человек и придумайте название, а далее заполните форму которая будет
-            ниже. Если у вас уже есть команда осталось только нажать на кнопку
-            внизу что бы заполнить форму... | 
-          </p>
+          <span className="mx-2 mb-10 font-primary">
+            {mainTexts[0]}
+          </span>
+          <span className="mx-2 font-primary">
+            {mainTexts[1]}
+          </span>
           <a
             href="https://forms.yandex.ru/u/655efcd7693872021ddcaab5/"
             target="_blank"
@@ -77,7 +114,7 @@ export default function Title() {
             <b>ХОЧУ УЧАВСТВОВАТЬ</b>
           </a>
           <a
-            href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+            href="https://t.me/slm_brain_hack"
             target="_blank"
             className="flex mt-[50px] mb-[50px]"
           >
@@ -88,13 +125,12 @@ export default function Title() {
               width={26}
               height={26}
             />
-            <span className="font-primary underline decoration-1 font-[16px]">
+            <span className=" font-primary underline decoration-1 font-[16px]">
               Чат в телеграм
             </span>
           </a>
         </div>
       </div>
-
     </section>
   );
 }

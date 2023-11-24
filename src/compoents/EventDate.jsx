@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
@@ -21,7 +21,7 @@ export default function Date() {
                 alt="star"
               />
               <span className="font-primary text-[25px]">
-                5 ДЕКАБРЯ 2023 В 21 SCHOOL
+                13-14 ДЕКАБРЯ 2023
               </span>
               <Image
                 className="star h-[17px] mx-[30px]"
@@ -31,7 +31,7 @@ export default function Date() {
                 alt="star"
               />
               <span className="font-primary text-[25px]">
-                5 ДЕКАБРЯ 2023 В 21 SCHOOL
+                13-14 ДЕКАБРЯ 2023
               </span>
             </div>
           );
